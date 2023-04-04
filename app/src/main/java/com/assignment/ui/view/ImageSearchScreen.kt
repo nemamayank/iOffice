@@ -18,6 +18,7 @@ import com.assignment.databinding.ImageListBinding
 import com.assignment.ui.adapter.ImageAdapter
 import com.assignment.ui.viewmodel.ImageViewModel
 import com.assignment.utility.Common.showProgressBar
+import com.assignment.utility.Constants.DEFAULT_IMAGE_SEARCH
 import com.assignment.utility.Constants.IMAGE_DETAIL_URL
 import com.assignment.utility.Constants.WINDOW_VIRAL
 
@@ -32,11 +33,11 @@ class ImageSearchScreen : AppCompatActivity(), ImageAdapter.OnImageClickListener
         setContentView(binding.root)
         init()
 
-        viewModel.observeMovieLiveData().observe(this) { imageList ->
+        viewModel.observeUpdatedData().observe(this) { imageList ->
             if (!imageList.isNullOrEmpty()) {
                 imageAdapter.setImageList(imageList)
             } else {
-                imageAdapter.setImageList(ArrayList())
+                clearImageAdapter()
             }
         }
 
@@ -58,6 +59,7 @@ class ImageSearchScreen : AppCompatActivity(), ImageAdapter.OnImageClickListener
             this,
             ViewModelFactory(ImageApiHelper(RetrofitInstance.api))
         )[ImageViewModel::class.java]
+        imageSearchCall(DEFAULT_IMAGE_SEARCH, WINDOW_VIRAL)
     }
 
     private fun imageSearchCall(searchText: String, window: String) {
@@ -69,19 +71,14 @@ class ImageSearchScreen : AppCompatActivity(), ImageAdapter.OnImageClickListener
                         showProgressBar(binding.progressBar, false)
                         resource.data?.let { searchImage ->
                             if (!searchImage.data!!.isNullOrEmpty()) {
-                                viewModel.getImagesOnly(searchImage.data)
+                                viewModel.getImages(searchImage.data)
                             }
                         }
                     }
                     Status.ERROR -> {
                         binding.rvImages.visibility = View.VISIBLE
                         showProgressBar(binding.progressBar, false)
-                        viewModel.getImagesOnly(emptyList())
-                        Toast.makeText(
-                            applicationContext,
-                            getString(R.string.content_unavailable),
-                            Toast.LENGTH_LONG
-                        ).show()
+                        clearImageAdapter()
                     }
                     Status.LOADING -> {
                         showProgressBar(binding.progressBar, true)
@@ -104,5 +101,13 @@ class ImageSearchScreen : AppCompatActivity(), ImageAdapter.OnImageClickListener
         startActivity(Intent(this, ImageDetailScreen::class.java).apply {
             putExtra(IMAGE_DETAIL_URL, images.link)
         })
+    }
+
+    private fun clearImageAdapter(){
+        imageAdapter.clear()
+        Toast.makeText(
+            applicationContext,
+            getString(R.string.content_unavailable),
+            Toast.LENGTH_LONG ).show()
     }
 }

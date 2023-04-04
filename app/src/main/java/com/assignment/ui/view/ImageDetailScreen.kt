@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.assignment.R
 import com.assignment.databinding.ImageDetailBinding
 import com.assignment.ui.viewmodel.DetailViewModel
-import com.assignment.utility.Constants
 import com.assignment.utility.Constants.IMAGE_DETAIL_URL
 import com.bumptech.glide.Glide
 
@@ -27,6 +27,7 @@ class ImageDetailScreen : AppCompatActivity() {
         val image = intent.extras!!.getString(IMAGE_DETAIL_URL)
         Glide.with(this)
             .load(image)
+            .error(R.drawable.ic_error)
             .into(binding.detailImage)
     }
 

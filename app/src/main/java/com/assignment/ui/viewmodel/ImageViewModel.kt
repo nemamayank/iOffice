@@ -27,7 +27,7 @@ class ImageViewModel(private val mainRepository: MainRepository) : ViewModel() {
         }
     }
 
-    fun getImagesOnly(dataList: List<Data>) {
+    fun getImages(dataList: List<Data>) {
         val imageData = ArrayList<Images>()
         if(dataList.isNullOrEmpty()) {
             setImageData(imageData)
@@ -39,11 +39,7 @@ class ImageViewModel(private val mainRepository: MainRepository) : ViewModel() {
                 break
             }
             for (imageUrl in item.images){
-                if (imageUrl.type.equals("image/png", true) ||
-                    imageUrl.type.equals("image/jpeg", true) ||
-                    imageUrl.type.equals("gif", true)){
-                    imageData.add(imageUrl)
-                }
+                imageData.add(imageUrl)
             }
         }
         setImageData(imageData)
@@ -53,7 +49,7 @@ class ImageViewModel(private val mainRepository: MainRepository) : ViewModel() {
         imageLiveData.value = imageData
     }
 
-    fun observeMovieLiveData(): LiveData<List<Images>> {
+    fun observeUpdatedData(): LiveData<List<Images>> {
         return imageLiveData
     }
 }

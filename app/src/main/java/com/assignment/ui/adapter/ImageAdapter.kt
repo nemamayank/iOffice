@@ -3,8 +3,9 @@ package com.assignment.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.assignment.databinding.ImageListItemBinding
+import com.assignment.R
 import com.assignment.data.models.Images
+import com.assignment.databinding.ImageListItemBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
@@ -32,6 +33,8 @@ class ImageAdapter(private val onImageClickListener: OnImageClickListener) : Rec
         val image: Images = imageList[position]
         Glide.with(holder.itemView.context)
             .load(image.link)
+            .placeholder(R.drawable.ic_placeholder)
+            .error(R.drawable.ic_error)
             .apply(RequestOptions().override(80, 80))
             .into(holder.binding.searchedImage)
 
@@ -43,6 +46,12 @@ class ImageAdapter(private val onImageClickListener: OnImageClickListener) : Rec
 
     override fun getItemCount(): Int {
         return imageList.size
+    }
+
+    fun clear() {
+        val size: Int = imageList.size
+        imageList.clear()
+        notifyItemRangeRemoved(0, size)
     }
 
     interface OnImageClickListener {
