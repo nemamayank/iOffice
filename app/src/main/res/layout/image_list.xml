@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:elevation="1dp"
+        android:background="@color/grey"
         android:focusableInTouchMode="false"
         android:queryHint="@string/search_placeholder"
         android:iconifiedByDefault="false"

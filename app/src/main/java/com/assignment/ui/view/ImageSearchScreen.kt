@@ -3,21 +3,18 @@ package com.assignment.ui.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.assignment.R
 import com.assignment.data.api.ImageApiHelper
 import com.assignment.data.api.RetrofitInstance
 import com.assignment.data.api.Status
-import com.assignment.data.models.Data
 import com.assignment.data.models.Images
 import com.assignment.data.repository.ViewModelFactory
-import com.assignment.databinding.ActivityMainBinding
+import com.assignment.databinding.ImageListBinding
 import com.assignment.ui.adapter.ImageAdapter
 import com.assignment.ui.viewmodel.ImageViewModel
 import com.assignment.utility.Common.showProgressBar
@@ -25,13 +22,13 @@ import com.assignment.utility.Constants.IMAGE_DETAIL_URL
 import com.assignment.utility.Constants.WINDOW_VIRAL
 
 class ImageSearchScreen : AppCompatActivity(), ImageAdapter.OnImageClickListener {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ImageListBinding
     private lateinit var viewModel: ImageViewModel
     private lateinit var imageAdapter: ImageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ImageListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
 
