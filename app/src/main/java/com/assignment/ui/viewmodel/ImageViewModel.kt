@@ -29,12 +29,12 @@ class ImageViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
     fun getImagesOnly(dataList: List<Data>) {
         val imageData = ArrayList<Images>()
-        if(dataList.isEmpty()) {
+        if(dataList.isNullOrEmpty()) {
             setImageData(imageData)
             return
         }
         for (item in dataList){
-            if(item.images.isEmpty()) {
+            if(item.images.isNullOrEmpty()) {
                 setImageData(imageData)
                 break
             }
