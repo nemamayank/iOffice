@@ -70,7 +70,7 @@ class ImageSearchScreen : AppCompatActivity(), ImageAdapter.OnImageClickListener
                         binding.rvImages.visibility = View.VISIBLE
                         showProgressBar(binding.progressBar, false)
                         resource.data?.let { searchImage ->
-                            if (!searchImage.data!!.isNullOrEmpty()) {
+                            if (searchImage.data.isNotEmpty()) {
                                 viewModel.getImages(searchImage.data)
                             }
                         }

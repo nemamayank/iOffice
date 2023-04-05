@@ -30,7 +30,6 @@ data class Data(
     val privacy: String,
     val score: Int,
     val section: String,
-    val tags: List<Tag>,
     val title: String,
     val topic: Any,
     val topic_id: Any,

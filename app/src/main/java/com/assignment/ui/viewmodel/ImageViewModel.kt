@@ -1,5 +1,6 @@
 package com.assignment.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,20 +30,25 @@ class ImageViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
     fun getImages(dataList: List<Data>) {
         val imageData = ArrayList<Images>()
-        if(dataList.isNullOrEmpty()) {
-            setImageData(imageData)
-            return
-        }
-        for (item in dataList){
-            if(item.images.isNullOrEmpty()) {
+        try{
+            if(dataList.isEmpty()) {
                 setImageData(imageData)
-                break
+                return
             }
-            for (imageUrl in item.images){
-                imageData.add(imageUrl)
+            for (item in dataList){
+                if(item.images.isEmpty()) {
+                    setImageData(imageData)
+                    break
+                }
+                for (imageUrl in item.images){
+                    imageData.add(imageUrl)
+                }
             }
+            setImageData(imageData)
+        }catch (e:Exception){
+            Log.e("<<Exception>>", e.toString())
+            setImageData(imageData)
         }
-        setImageData(imageData)
     }
 
     private fun setImageData(imageData: ArrayList<Images>) {
