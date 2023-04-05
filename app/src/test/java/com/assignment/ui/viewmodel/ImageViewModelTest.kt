@@ -1,9 +1,8 @@
 package com.assignment.ui.viewmodel
 
 import com.assignment.data.models.SearchImage
-import com.assignment.data.repository.MainRepository
-import com.assignment.data.repository.Resource
-import com.assignment.ui.viewmodel.ImageViewModel
+import com.assignment.di.repositories.MainRepository
+import com.assignment.di.repositories.Resource
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi

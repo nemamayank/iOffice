@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.assignment.data.repository.Resource
+import com.assignment.di.repositories.Resource
 import com.assignment.data.models.Data
 import com.assignment.data.models.Images
-import com.assignment.data.repository.MainRepository
+import com.assignment.di.repositories.MainRepository
 import kotlinx.coroutines.Dispatchers
 
 class ImageViewModel(private val mainRepository: MainRepository) : ViewModel() {

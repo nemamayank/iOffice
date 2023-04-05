@@ -13,7 +13,7 @@ import com.assignment.data.api.ImageApiHelper
 import com.assignment.data.api.RetrofitInstance
 import com.assignment.data.api.Status
 import com.assignment.data.models.Images
-import com.assignment.data.repository.ViewModelFactory
+import com.assignment.di.repositories.ViewModelFactory
 import com.assignment.databinding.ImageListBinding
 import com.assignment.ui.adapter.ImageAdapter
 import com.assignment.ui.viewmodel.ImageViewModel
@@ -108,6 +108,6 @@ class ImageSearchScreen : AppCompatActivity(), ImageAdapter.OnImageClickListener
         Toast.makeText(
             applicationContext,
             getString(R.string.content_unavailable),
-            Toast.LENGTH_LONG ).show()
+            Toast.LENGTH_SHORT ).show()
     }
 }

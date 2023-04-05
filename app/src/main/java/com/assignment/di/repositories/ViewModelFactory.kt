@@ -1,4 +1,4 @@
-package com.assignment.data.repository
+package com.assignment.di.repositories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
