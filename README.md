@@ -9,7 +9,8 @@
  **Lifecycle** |
  **LiveData** |
  **Glide** |
- **Coroutines**
+ **Coroutines** |
+ **JUnit Test**
 ```
 dependencies {
     ...
@@ -62,7 +63,8 @@ dependencies {
 - Structured with the following heirarchy:
   **Data (API | Models)**,
   **UI (View | ViewModel | Adapter)**
-  **Repository**
+  **DI** --> **Repositories**
   **Utility**
 - Display images in list and representing them using the **Glide** library
 - Used DI for avoiding the boiler plate dependency
+- JUnit4 test case implementation for test driven development
